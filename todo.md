@@ -1,0 +1,2 @@
+- Replace favicon.ico with actual logo (keep it called favicon.ico)
+- follow design to implement app

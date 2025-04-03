@@ -1,0 +1,97 @@
+<template>
+    <!-- <Navbar></Navbar> -->
+    <main>
+        <div class="bg"></div>
+        <h1>Welcome To Xcuria</h1>
+        <main>
+            <div id="catch">Your Next Adventure Starts Here</div>
+            <div id="link-cont">
+                <RouterLink to="/join">Join</RouterLink>
+                <RouterLink to="/signin">Sign In</RouterLink>
+            </div>
+
+        </main>
+    </main>
+</template>
+<script setup>
+import Navbar from '@/components/Navbar.vue';
+
+
+</script>
+<style scoped>
+:deep(h1){
+    color: var(--fog);
+    font-weight: 600;
+    font-size: 50px;
+    /* -webkit-text-stroke-color: var(--clr-primary-text);
+    -webkit-text-stroke-width: 1.5px; */
+    position:absolute;
+    top: 60px;
+    padding: 20px;
+    padding-block: 10px;
+    background-color: var(--fog-lowopacity);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    
+    border-radius: 20px;
+}
+main{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height:100vh;   
+}
+.bg{
+    /* background-image: url(../assets/pics/banffrock.jpg); */
+    /* background-image: url(../assets/pics/glacierlake.jpg); */
+    /* background-image: url(../assets/pics/missouririver.jpg); */
+    background-image: url(../assets/pics/morainelake.jpg);
+    /* background-image: url(../assets/pics/sunburst.jpg); */
+    /* background-image: url(../assets/pics/yellowstonewaterfall.jpg); */
+    /* background-size: cover; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    position:absolute;
+    width:100vw;
+    height:100vh;
+    /* opacity:0.7; */
+}
+#catch{
+    background-color: var(--fog-lowopacity);
+    backdrop-filter: blur(2px);
+    /* -webkit-backdrop-filter: blur(1px); */
+    font-weight: 800;
+    font-size: 60px;
+    border-radius: 20px;
+    padding: 20px;
+    color: var(--teal);
+    -webkit-text-stroke-color: var(--fog-lowopacity);
+    -webkit-text-stroke-width: 4.5px;
+    margin-bottom: 60px;
+    
+}
+#link-cont{
+    display: flex;
+    gap: 20px;
+}
+#link-cont > *{
+    background-color: var(--teal);
+    width: 180px;
+    text-align: center;
+}
+:deep(a){
+    background-color: var(--fog-lowopacity);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 20px;
+    padding: 10px;
+
+}
+:deep(a):visited{
+    color: var(--fog)
+}
+</style>

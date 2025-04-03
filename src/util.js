@@ -1,0 +1,1 @@
+export const server_url = "https://excursions-api-server.azurewebsites.net";
