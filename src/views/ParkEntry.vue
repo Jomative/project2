@@ -1,3 +1,7 @@
+<!-- ideas
+- loading animation (pulsating opacity transition) while images are still loading 
+
+-->
 <script setup>
     let props = defineProps({
         name:String,
@@ -7,6 +11,7 @@
 
     });
     // if()
+    
 
 </script>
 <template>
