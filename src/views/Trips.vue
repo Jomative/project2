@@ -1,7 +1,7 @@
 <template>
     <!-- <Navbar></Navbar> -->
     <main>
-        <h1>Welcome To Trips</h1>
+        <h1>Your Trips</h1>
     </main>
 </template>
 <script setup>
@@ -9,6 +9,8 @@ import Navbar from '@/components/Navbar.vue';
 
 
 </script>
-<style>
-    
+<style scoped>
+    main{
+        padding: 20px;
+    }
 </style>

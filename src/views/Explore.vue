@@ -49,7 +49,7 @@ defineExpose({
         <div id="search-cont">
             <!-- how to make it so that clicking anywhere in this cont triggers input? -->
             <input type="text" id="search-input" placeholder="Search for a park..." v-model="query">
-            <button id="search-icon" class="material-symbols-outlined" v-on:click="loadParks">search</button>
+            <button id="search-icon" class="material-symbols-outlined" @click="loadParks">search</button>
             <!-- maybe search icon is a button elm instead? -->
         </div>
         <div class="park-cont">
