@@ -3,6 +3,9 @@
 
 -->
 <script setup>
+import Modal from '@/components/Modal.vue';
+import { useTemplateRef } from 'vue';
+const modal = useTemplateRef("modal")
     let props = defineProps({
         name:String,
         desc:String,
@@ -15,7 +18,7 @@
 
 </script>
 <template>
-    <div class="entry-cont">
+    <div class="entry-cont" @click="modal.open">
         <div class="img-cont" :style="{'background-image':`url(${image})`}">
             <!-- <img class="img" :src="image"> -->
         </div>
@@ -25,6 +28,18 @@
             <div class="state">Location: {{ state }}</div>
         </div>
     </div>
+    <Modal ref="modal">
+        <template #header>
+            <div>{{ name }}</div>
+        </template>
+        <template #main>
+            <div>{{ desc }}</div>
+            <!-- {{ address, etc add other stuff check Brandon }} -->
+        </template>
+        <template #footer>
+            <button>Add to Trip</button>
+        </template>
+    </Modal>
 </template>
 <style scoped>
 .info-cont{
