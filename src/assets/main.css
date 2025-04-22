@@ -34,6 +34,7 @@
   --malibu: #a7d7b8;
   --dodgerblue: #66b2a0;
   --teal: teal;
+  --darkteal: rgb(2, 98, 98);
   --azureradiance: #4e796b;
   --bisque: bisque;
 }
@@ -112,4 +113,42 @@ body{
 
 a{
   text-decoration: none;
+}
+
+button,
+.modal button{
+  background-color:var(--dodgerblue);
+  padding:10px 15px;
+  border-radius:20px;
+  color:whitesmoke;
+  border:none;
+  display:inline-block;
+  width:max-content;
+  font-weight:bold;
+  outline:none;
+
+  &:hover{
+      background-color:var(--teal);
+  }
+}
+
+.sach{
+  display: flex;
+  /* margin:5px; */
+  align-items:center;
+  justify-content:space-between;
+
+  & button{
+    aspect-ratio:1;
+    padding:7px;
+    font-size:18px;
+  }
+}
+
+input{
+  padding:5px 10px;
+  border:none;
+  border:solid 1px gainsboro;
+  border-radius:5px;
+  background-color:whitesmoke;
 }

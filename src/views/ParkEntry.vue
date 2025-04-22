@@ -37,7 +37,7 @@ const modal = useTemplateRef("modal")
             <!-- {{ address, etc add other stuff check Brandon }} -->
         </template>
         <template #footer>
-            <button>Add to Trip</button>
+            <!-- <button>Add to Trip</button> -->
         </template>
     </Modal>
 </template>

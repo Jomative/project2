@@ -6,7 +6,7 @@
             <div>{{ props.data.title }}</div>
         </template>
         <template #main>
-            <div ref="desc"></div>
+            <div class="desc"></div>
         </template>
         <template #footer>
             <!-- <button @click="modal.close">Close</button> -->
@@ -16,24 +16,28 @@
 
 </template>
 <script setup>
-import { onMounted, useTemplateRef } from 'vue';
+import { onMounted, provide, useTemplateRef } from 'vue';
 import Modal from './Modal.vue';
 
 const modal = useTemplateRef("modal");
 
-    const props = defineProps({
-        data:Object
-    })
+const props = defineProps({
+    data:Object
+})
     // console.log(props.data)
 function loadInfo(){
     //generate a new Modal.vue component?
     modal.value.open();
 }
 
-const desc = useTemplateRef("desc");
+// const desc = useTemplateRef("desc2");
 onMounted(()=>{
-    if(desc.value) desc.value.innerHTML = props.data.longDescription;
+    // console.log(desc.value);
+    // if(desc.value) desc.value.innerHTML = props.data.longDescription;
+    // if(modal.value.main) modal.value.main.querySelector(".desc").innerHTML = props.data.longDescription;
 });
+
+provide("desc123",props.data.longDescription);
 
 </script>
 

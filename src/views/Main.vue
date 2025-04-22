@@ -62,8 +62,8 @@ async function loadActivities(){
     } else {
         console.log("An error occured: " + res.status + await res.text());
     }
-
 }
+
 </script>
 <template>
     <!-- <Navbar></Navbar> -->
@@ -95,7 +95,7 @@ async function loadActivities(){
             </div>
 
         </div>
-        <h2>Featured Parks</h2>
+        <!-- <h2>Featured Parks</h2> -->
     </main>
 </template>
 <style scoped>
@@ -106,10 +106,6 @@ async function loadActivities(){
     flex-direction: column;
     user-select: none;
     overflow-x:hidden;
-}
-.sach{
-    display: flex;
-    /* margin:5px; */
 }
 .search-submit{
     font-size: 20px;
@@ -150,6 +146,7 @@ main{
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    width:100vw;
 }
 #parkimgs{
     display: flex;

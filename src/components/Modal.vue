@@ -1,33 +1,47 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { inject, onMounted, ref, useTemplateRef } from 'vue';
+import TextElement from './TextElement.vue';
 
 let showModal = ref(false);
 
 function open(){
     console.log("open modal");
     showModal.value = true;
+
+    setTimeout(()=>{
+        let amt = document.querySelectorAll(".modal-backdrop").length;
+        modalBack.value.style.zIndex = amt.toString();
+    },100);
 }
 function close(){
     console.log("close modal");
     showModal.value = false;
 }
 
+const modalBack = useTemplateRef("back");
+const desc123 = useTemplateRef("desc123");
+
 defineExpose({
-    open,close
+    open,close,
+    // main:ref(main123)
 });
+
+const desc = inject("desc123");
 
 </script>
 
 <template>
-    <div v-show="showModal" :fade-in2="showModal" class="modal-backdrop" @click.self="close" @keydown.esc="close">
+    <div v-if="showModal" :fade-in2="showModal" ref="back" class="modal-backdrop" @click.self="close" @keydown.esc="close">
         <div class="modal">
             <header>
                 <slot name="header"></slot>
                 <button @click.stop="close" class="icon model-btn b-close">close</button>
             </header>
 
-            <main>
+            <main ref="main123">
                 <slot name="main"></slot>
+                <!-- <div v-if="desc" ref="desc123" class="desc123"></div> -->
+                <TextElement v-if="desc" :text="desc"></TextElement>
             </main>
 
             <footer>
@@ -92,22 +106,6 @@ defineExpose({
     border-radius:50%;
 }
 
-:deep(button){
-    background-color:var(--dodgerblue);
-    padding:10px 15px;
-    border-radius:20px;
-    color:whitesmoke;
-    border:none;
-    display:inline-block;
-    width:max-content;
-    font-weight:bold;
-
-    &:hover{
-        background-color:var(--teal);
-    }
-}
-
-
 header{
     display:flex;
     align-items:center;
@@ -147,6 +145,18 @@ main{
 
 :deep(.form){
     width:300px;
+}
+
+:deep(.modal-item){
+    display:flex;
+    flex-direction:column;
+    margin-top:20px;
+
+    & label{
+        font-size:14px;
+        opacity:0.8;
+        text-align: center;
+    }
 }
 
 </style>
