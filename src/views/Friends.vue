@@ -117,4 +117,10 @@ main{
     background-color:teal;
     color:white;
 }
+
+hr{
+    margin-top:10px;
+    border: 1px dashed gray;
+
+}
 </style>
