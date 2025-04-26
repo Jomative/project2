@@ -23,11 +23,23 @@ import Logo from './icons/Logo.vue';
                 </div>
                 <div class="icon-text">Trips</div>
             </RouterLink>
+            <RouterLink to="/excursions">
+                <div class="icon-cont">
+                    <div class="icon">explore</div>
+                </div>
+                <div class="icon-text">Excursions</div>
+            </RouterLink>
             <RouterLink to="/explore">
                 <div class="icon-cont">
                     <div class="icon">map_search</div>
                 </div>
                 <div class="icon-text">Explore</div>
+            </RouterLink>
+            <RouterLink to="/friends">
+                <div class="icon-cont">
+                    <div class="icon">groups</div>
+                </div>
+                <div class="icon-text">Friends</div>
             </RouterLink>
             <RouterLink to="/profile">
                 <div class="icon-cont">

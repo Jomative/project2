@@ -6,6 +6,7 @@
             <div>{{ props.data.title }}</div>
         </template>
         <template #main>
+            <div class="todoimg"><img :src="props.data.images[0].url" alt=""></div>
             <div class="desc"></div>
         </template>
         <template #footer>
@@ -48,6 +49,9 @@ provide("desc123",props.data.longDescription);
     padding: 3px;
     background-color: var(--fog);
 
+}
+.todoimg > img{
+    width:100%
 }
     
 </style>

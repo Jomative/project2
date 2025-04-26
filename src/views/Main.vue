@@ -70,9 +70,16 @@ async function loadActivities(){
     <main>
         <Logoname id="logo"></Logoname>
         <h1>Dashboard</h1>
-        <div id="parkimgs">
+        <div id="parkimgs"> 
             <img src="../assets/pics/glacierlake.jpg" alt="">
             <img src="../assets/pics/grandcanyonsunrise.jpg" alt="">
+            <img src="../assets/pics/missouririver.jpg" alt="">
+            <img src="../assets/pics/peak.jpg" alt="">
+            <img src="../assets/pics/sunburst.jpg" alt="">
+            <img src="../assets/pics/yellowstonewaterfall.jpg" alt="">
+            <img src="../assets/pics/yosemitecathedral.jpg" alt="">
+            <img src="../assets/pics/gteton.jpg" alt="">
+            <img src="../assets/pics/banffrock.jpg" alt="">
             <img src="../assets/pics/morainelake.jpg" alt="">
             <div id="showall"><RouterLink to="/explore">Discover more parks</RouterLink></div>
         </div>

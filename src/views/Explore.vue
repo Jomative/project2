@@ -53,7 +53,7 @@ defineExpose({
             <!-- maybe search icon is a button elm instead? -->
         </div>
         <div class="park-cont">
-            <ParkEntry v-for="park in parks" :name="park.fullName" :desc="park.description" :state="park.states" :image="park.images[0].url" class="park-entry"></ParkEntry>
+            <ParkEntry v-for="park in parks" :name="park.fullName" :desc="park.description" :state="park.states" :image="park.images[0].url" :data="park" class="park-entry"></ParkEntry>
         </div>
     </main>
 </template>

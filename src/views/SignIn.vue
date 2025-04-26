@@ -67,6 +67,7 @@ async function signIn(){
                 <input id="password" type="text" v-model="password" placeholder="Enter password">
 
                 <div id="remember-me-cont"><input type="checkbox" id="remember-me">Remember me</div>
+                <div class="errmsg" v-if="errorMessage">⚠️Error: {{ errorMessage }}</div>
                 <button @click="signIn">Sign in</button>
                 <div id="toast">Don't have an account?   <RouterLink to="/join">Sign up now</RouterLink></div>
             </div>
@@ -74,6 +75,9 @@ async function signIn(){
     </div>
 </template>
 <style scoped>
+.errmsg{
+    color: firebrick;
+}
 #toast {
     text-align: center;
     padding-top: 15px;

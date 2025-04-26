@@ -7,6 +7,8 @@ import Explore from '@/views/Explore.vue'
 import SignIn from '@/views/SignIn.vue'
 import Profile from '@/views/Profile.vue'
 import Join from '@/views/Join.vue'
+import Excursions from '@/views/Excursions.vue'
+import Friends from '@/views/Friends.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,6 +50,24 @@ const router = createRouter({
       components: {
         navbar: Navbar,
         mainCont: Profile
+      }
+
+    },
+    {
+      path: '/excursions',
+      name: 'excursions',
+      components: {
+        navbar: Navbar,
+        mainCont: Excursions
+      }
+
+    },
+    {
+      path: '/friends',
+      name: 'friends',
+      components: {
+        navbar: Navbar,
+        mainCont: Friends
       }
 
     },

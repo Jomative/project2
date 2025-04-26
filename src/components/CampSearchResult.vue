@@ -6,6 +6,7 @@
             <div>{{ props.data.name }}</div>
         </template>
         <template #main>
+            <div class="campimg"><img :src="props.data.images[0].url" alt=""></div>
             <div ref="desc">Description: {{props.data.description}}</div>
         </template>
         <template #footer>
@@ -40,6 +41,9 @@ function submitAddToTrip(){
     border:solid 1px gray;
     padding: 3px;
     background-color: var(--fog);
+}
+.campimg > img{
+    width:100%
 }
     
 </style>

@@ -28,11 +28,6 @@ async function fetchUserProfile() {
         if (response.ok) {
             const data = await response.json();
             user.value = data.user;
-            // user.value = {
-            //     ...data,
-            //     firstName: data.firstName,
-            //     lastName: data.lastName
-            // };
             console.log("fetch", data)
         } else if (response.status === 401) {
             error.value = "Unauthorized: Invalid token.";
@@ -83,7 +78,6 @@ const saveChanges = async () => {
                 updatedUser.email,
                 updatedUser.userName
             );
-            // window.updateMainUsername();
             fetchUserProfile();
             closeModal();
         } else {
@@ -96,59 +90,109 @@ const saveChanges = async () => {
     }
 };
 
+async function signOut(){
+    const response = await fetch(server_url + '/user/sign-out', {
+        method: 'POST',
+        headers:{
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    if(response.ok){
+        localStorage.clear();
+        router.push({path:'/'})
+
+    } else {
+        console.log("signout failed")
+    }
+} 
+
+async function delAccount(){
+    const response = await fetch(server_url + '/user', {
+        method: 'DELETE',
+        headers:{
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    if(response.ok){
+        console.log("account deleted")
+        localStorage.clear();
+        router.push({path:'/'})
+    } else {
+        console.log("error while deleting")
+    }
+
+}
+
 onMounted(fetchUserProfile);
 </script>
 
 <template>
-    <main>
-        <h1>Profile</h1>
-        <div id="profile-cont">
+    <div id="profile-wrapper">
+        <main :class="{ blurred: isModalOpen }">
+            <h1>Profile</h1>
+            <div id="profile-cont">
+                <div v-if="error" class="error-message">
+                    <p>{{ error }}</p>
+                </div>
 
-            <div v-if="error" class="error-message">
-                <p>{{ error }}</p>
+                <div v-else-if="user">
+                    <p><strong>Username:</strong> {{ user.userName }}</p>
+                    <p><strong>First Name:</strong> {{ user.firstName }}</p>
+                    <p><strong>Last Name:</strong> {{ user.lastName }}</p>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <button @click="openModal" class="edit-button">Edit</button>
+                </div>
+                <div class="flx-sb fw dangerous-cont" style="translate:0px 100px;height:0px">
+                    <button @click="signOut()">Sign Out</button>
+                    <button class="delbtn" @click="delAccount()">Delete Account</button>
+                </div>
             </div>
+        </main>
 
-            <div v-else-if="user">
-                <p><strong>Username:</strong> {{ user.userName }}</p>
-                <p><strong>First Name:</strong> {{ user.firstName }}</p>
-                <p><strong>Last Name:</strong> {{ user.lastName }}</p>
-                <p><strong>Email:</strong> {{ user.email }}</p>
-                <button @click="openModal" class="edit-button">Edit</button>
-            </div>
-
-            <!-- <button @click="router.back()" class="back-button">Go Back</button> -->
-
-            <div v-if="isModalOpen" class="modal" @click.self="closeModal">
-                <div class="modal-content">
-                    <button class="close-button" @click="closeModal">X</button>
-                    <h3>Edit Profile</h3>
-                    <label>
-                        Username:
-                        <input type="text" v-model="user.userName" />
-                    </label>
-                    <label>
-                        First Name:
-                        <input type="text" v-model="user.firstName" />
-                    </label>
-                    <label>
-                        Last Name:
-                        <input type="text" v-model="user.lastName" />
-                    </label>
-                    <label>
-                        Email:
-                        <input type="email" v-model="user.email" />
-                    </label>
-                    <div class="modal-actions">
-                        <button @click="saveChanges">Save</button>
-                        <button @click="closeModal">Cancel</button>
-                    </div>
+        <div v-if="isModalOpen" class="modal" @click.self="closeModal">
+            <div class="modal-content">
+                <button class="close-button" @click="closeModal">X</button>
+                <h3>Edit Profile</h3>
+                <label>
+                    Username:
+                    <input type="text" v-model="user.userName" />
+                </label>
+                <label>
+                    First Name:
+                    <input type="text" v-model="user.firstName" />
+                </label>
+                <label>
+                    Last Name:
+                    <input type="text" v-model="user.lastName" />
+                </label>
+                <label>
+                    Email:
+                    <input type="email" v-model="user.email" />
+                </label>
+                <div class="modal-actions">
+                    <button @click="saveChanges">Save</button>
+                    <button @click="closeModal">Cancel</button>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 </template>
 
 <style scoped>
+.delbtn:hover{
+    background-color: rgb(99, 18, 18)!important;
+}
+.dangerous-cont > button{
+    border-radius:5px;
+    width:49%;
+    &:last-child{
+        background-color:firebrick;
+    }
+}
+
+#profile-wrapper {
+    position: relative;
+}
 
 #profile-cont {
     font-size: larger;
@@ -167,8 +211,12 @@ main {
     align-items: center;
     width: 90vw;
     margin-top: 70px;
+    transition: filter 0.3s ease; /* Smooth transition for blur effect */
 }
 
+main.blurred {
+    filter: blur(5px); /* Apply blur effect to the background content */
+}
 
 .modal {
     position: fixed;
@@ -180,10 +228,10 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000; /* Ensure the modal is above other content */
 }
 
 .modal-content {
-    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -193,6 +241,7 @@ main {
     border-radius: 10px;
     width: 400px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1100; /* Ensure the modal content is above the overlay */
 }
 
 .close-button {
@@ -211,7 +260,7 @@ main {
     margin-top: 20px;
 }
 
-.edit-button{
+.edit-button {
     margin-top: 10px;
     padding: 10px 20px;
     background-color: var(--dodgerblue);
@@ -220,7 +269,7 @@ main {
     cursor: pointer;
 }
 
-.edit-button:hover{
+.edit-button:hover {
     background-color: var(--darkteal);
 }
 </style>

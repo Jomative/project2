@@ -10,7 +10,8 @@ const modal = useTemplateRef("modal")
         name:String,
         desc:String,
         state:String,
-        image:String
+        image:String,
+        data:Object
 
     });
     // if()
@@ -33,6 +34,7 @@ const modal = useTemplateRef("modal")
             <div>{{ name }}</div>
         </template>
         <template #main>
+            <div><img class="contidk" :src="data.images[1].url" alt=""></div>
             <div>{{ desc }}</div>
             <!-- {{ address, etc add other stuff check Brandon }} -->
         </template>
@@ -84,5 +86,9 @@ const modal = useTemplateRef("modal")
     overflow:hidden;
     text-overflow:ellipsis;
     font-size: 14px;
+}
+.contidk{
+    /* width:90%; */
+    max-height: 300px;
 }
 </style>

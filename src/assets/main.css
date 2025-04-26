@@ -152,3 +152,16 @@ input{
   border-radius:5px;
   background-color:whitesmoke;
 }
+
+.flx-c{
+  display:flex;
+  align-items:center;
+}
+.flx-sb{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.fw{
+  width:100%;
+}
